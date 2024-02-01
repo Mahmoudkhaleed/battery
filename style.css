@@ -1,0 +1,99 @@
+*{
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.battery-box{
+  --border-color: rgba(32, 71, 114, 1);
+  --brder-width: 5px;
+  --padding: 2px;
+  position: relative;
+}
+.battery-box::before,
+.battery-box::after {
+  content: "";
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  z-index: -3;
+}
+.battery-box::before {
+  top: -100px;
+  left: -50px;
+  background-color: rgba(0, 255, 70, 1);
+}
+.battery-box::after {
+  bottom: -100px;
+  right: -50px;
+  background-color: rgba(0, 255, 185, 1);
+}
+
+.battery-box .box{
+  backdrop-filter: blur(20px);
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+  width: 300px;
+}
+.battery-box .battery{
+  margin-bottom: 30px;
+  width: 200px;
+  height: 100px;
+  border: var(--brder-width) solid var(--border-color);
+  padding: var(--padding);
+  border-radius: 10px;
+  position: relative;
+}
+.battery-box .battery::after{
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: calc(var(--brder-width) * -3 - var(--padding));
+  transform: translateY(-50%);
+  width: 10px;
+  height: 25px;
+  border-radius: 0 5px 5px 0;
+  background-color: var(--border-color)
+}
+
+.battery-box .battery .charge-amount{
+  display: block;
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  border-radius: 4px;
+  background-image: linear-gradient(to right,rgba(0, 255, 70, 1),rgba(0, 255, 185, 1));
+  overflow: hidden;
+  transition: all .3s
+
+}
+.battery-box .battery .charge-amount::before{
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.battery-box h3{
+  font-size: 40px;
+  color: #333;
+}
